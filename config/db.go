@@ -4,18 +4,28 @@ import (
 	"database/sql"
 	"log"
 	"os"
+
 	_ "github.com/lib/pq"
-	"github.com/joho/godotenv"
 )
 
 var DB *sql.DB
 
 func ConnectDB() {
-	_ = godotenv.Load()
 	dbURL := os.Getenv("DB_URL")
+	if dbURL == "" {
+		log.Fatal("DB_URL tidak ditemukan! Pastikan environment variable diset.")
+	}
+
 	var err error
 	DB, err = sql.Open("postgres", dbURL)
 	if err != nil {
-		log.Fatal("Gagal koneksi DB: ", err)
+		log.Fatal("Gagal konek database:", err)
 	}
+
+	err = DB.Ping()
+	if err != nil {
+		log.Fatal("Ping ke database gagal:", err)
+	}
+
+	log.Println("✅ Connected to database!")
 }
