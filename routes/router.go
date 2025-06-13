@@ -7,6 +7,13 @@ import (
 )
 
 func SetupRoutes(r *gin.Engine) {
+	// Tambahkan root endpoint agar tidak 404 saat akses domain langsung
+	r.GET("/", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "🚀 API Mini-Project Data Buku is running!",
+		})
+	})
+
 	api := r.Group("/api")
 	api.POST("/users/login", controllers.Login)
 
