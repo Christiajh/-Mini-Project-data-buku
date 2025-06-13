@@ -49,4 +49,6 @@ Aplikasi RESTful API yang memungkinkan pengguna untuk melakukan CRUD data buku d
 | created_at    | timestamp | default now()                                     |
 
 ---
+📂 GitHub: https://github.com/Christiajh/Mini-Project-data-buku  
+🚀 Railway: https://mini-project-data-buku-production-3af5.up.railway.app/  
 
